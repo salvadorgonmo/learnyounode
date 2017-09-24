@@ -156,7 +156,8 @@ http.get(url,function(response){
       
 })
 */
-
+// the solution already work//
+/*
 var http = require('http')
 var bl = require('bl')
 var results = []
@@ -188,7 +189,7 @@ function httpGet (index){
 for(var i = 0; i < 3; i ++){
     httpGet(i)
 }
-
+*/
 // my solution:
 /*
 var http = require('http')
@@ -224,6 +225,26 @@ for(var i =2;i<5;i++){
         
     })
     */
+
+var net =  require('net')
+function zeroFill (i){
+    return (i < 10 ? '0' : '') + i
+}
+    
+function now() {
+    var d = new Date()
+    return d.getFullYear() + '-' +
+        zeroFill(d.getMonth() + 1) + '-' +
+        zeroFill(d.getDate()) + ' ' +
+        zeroFill(d.getHours()) + ':' +
+        zeroFill(d.getMinutes()) 
+}   
+
+var server = net.createServer(function (socket){
+    socket.end(now() + '\n')
+})
+server.listen(Number(process.argv[2]))
+
 
 
 
